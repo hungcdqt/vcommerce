@@ -1,0 +1,19 @@
+{
+  "name": "easynda-tests",
+  "version": "0.0.0",
+  "dependencies": {
+    "zombie": "2.0.0-alpha31",
+    "url": "0.7.9",
+    "supertest": "0.9.0",
+    "should": "3.1.3",
+    "assert": "1.1.1",
+    "Faker": "~0.7.2",
+    "chance": "~0.5.9"
+    },
+    "engines": {
+      "node": ">=0.10.0"
+    },
+    "scripts": {
+      "test": "mocha tests/my_tests.js"
+    }
+    }
