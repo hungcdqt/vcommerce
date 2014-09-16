@@ -1,4 +1,4 @@
-angular.module("sportsStore",["customFilters", "cart", "ngRoute"])
+angular.module("sportsStore",["customFilters", "cart", "ngRoute","itemsView"])
 .config(function ($routeProvider) {
 
 	$routeProvider.when("/complete", {

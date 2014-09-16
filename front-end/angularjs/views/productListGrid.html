@@ -7,13 +7,8 @@
 		{{item}}
 		</a>
 	</div>
-
-	<div class="col-xs-8">
-		<div>
-			<a ng-click="switchToListGrid('products','List')">List View</a>
-			<a ng-click="switchToListGrid('products','Grid')">Grid View</a>
-		</div>
-		<ul id="products" class="grid clearfix">
+	<switchItemsView class="col-xs-8">
+		<ul id="products" class="list clearfix">
 			<li class="well clearfix"  ng-repeat="item in data.products | filter:categoryFilterFn | range:selectedPage:pageSize">
 				<section class="left">
 					<img src="images/products/list-default-thumb.png" alt="default thumb" class="thumb">
@@ -35,14 +30,15 @@
 
 			</li>
 		</ul>
+	</switchItemsView>
 
-		<div class="pull-right btn-group">
-			<a 
-			ng-repeat="page in data.products | filter:categoryFilterFn | pageCount:pageSize"
-			ng-click = "selectPage($index + 1)" class="btn btn-default"
-			ng-class = "getPageClass($index + 1)">
-			{{$index + 1}}
-			</a>
-		</div>
+	<div class="pull-right btn-group">
+		<a 
+		ng-repeat="page in data.products | filter:categoryFilterFn | pageCount:pageSize"
+		ng-click = "selectPage($index + 1)" class="btn btn-default"
+		ng-class = "getPageClass($index + 1)">
+		{{$index + 1}}
+		</a>
 	</div>
+
 </div>
