@@ -4,38 +4,16 @@
 	<title>SportsStore</title>
 	<link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 	<link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="styles.css">
 	<script src="bower_components/angular/angular.js"></script>
-	<script>
-		angular.module("sportsStore",["customFilters", "cart", "ngRoute"])
-		.config(function ($routeProvider) {
-			
-			$routeProvider.when("/complete", {
-				templateUrl: "/views/thankYou.html"
-			});
-
-			$routeProvider.when("/placeorder", {
-				templateUrl: "views/placeOrder.html"
-			})
-
-			$routeProvider.when("/checkout", {
-				templateUrl: "/views/checkoutSummary.html"
-			});
-
-			$routeProvider.when("/products", {
-				templateUrl: "views/productList.html"
-			});
-
-			$routeProvider.otherwise({
-				templateUrl: "/views/productList.html"
-			});
-		});
-	</script>
+	
 	<script src="controllers/sportsStore.js"></script>
 	<script src="filters/customFilters.js"></script>
 	<script src="controllers/productListControllers.js"></script>
 	<script src="components/cart/cart.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="controllers/checkoutControllers.js"></script>
+	<script src="directives/directives.js"></script>
 </head>
 
 <body ng-controller = "sportsStoreCtrl">
