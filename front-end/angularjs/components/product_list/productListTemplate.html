@@ -1,0 +1,47 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+
+		<span class="list-style-buttons">
+			<a href="" ng-click="switchView()" id="gridview" class="switcher {{gridactive}}"><img src="images/grid-view-{{gridactive}}.png" alt="Grid">
+			</a>
+			<a href="" ng-click="switchView()" id="listview" class="switcher {{listactive}}"><img src="images/list-view-{{listactive}}.png" alt="List">
+			</a>
+		</span>
+
+		<span class="pull-right btn-group">
+			<a 
+			ng-repeat="page in data | filter: pageCount:pageSize"
+			ng-click = "selectPage($index + 1)" class="btn btn-default"
+			ng-class = "getPageClass($index + 1)">
+			{{$index + 1}}
+			</a>
+		</span>
+			
+	</div>
+	<div class="panel">
+		<ul id="products" class="list clearfix">
+			<li class="well clearfix"  ng-repeat="item in data ">
+				<section class="left">
+					<img src="images/products/list-default-thumb.png" alt="default thumb" class="thumb">
+					<h3>{{item.name}}</h3>
+					<span class="meta">Product ID: 543J423</span>
+				</section>
+
+				<section class="right">
+					<span class = "price pull-right label label-primary">
+						{{item.price || currency}}
+					</span>
+					<span class="darkview">
+						<button ng-click="addProductToCart(item)" class="btn btn-success pull-right">
+							Add to cart
+						</button>
+						<span class="lead">{{item.description}}</span>						
+					</span>
+				</section>
+
+			</li>
+		</ul>	
+	</div>
+	<div class="panel-body" ng-transclude>
+	</div>
+</div>

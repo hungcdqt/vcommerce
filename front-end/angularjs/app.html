@@ -7,10 +7,10 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<script src="bower_components/angular/angular.js"></script>
 	
-	<script src="directives/directives.js"></script>
 	<script src="controllers/sportsStore.js"></script>
 	<script src="filters/customFilters.js"></script>
-	<script src="controllers/productListControllers.js"></script>
+	<script src="components/product_list/productListControllers.js"></script>
+	<script src="components/product_list/productListDirectives.js"></script>
 	<script src="components/cart/cart.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="controllers/checkoutControllers.js"></script>
@@ -27,7 +27,6 @@
 		<a href="/app.html" class="alert-link">Click here to try again</a>
 	</div>
 	<ng-view />
-	
 	<!-- 
 	<ng-include src="'views/productList.html'"> </ng-include>
 

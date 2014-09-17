@@ -1,4 +1,4 @@
-angular.module("sportsStore")
+angular.module("productList",[])
 .constant("productListActiveClass","btn-primary")
 .constant("productListPageCount",3)
 .controller("productListCtrl", function ($scope, $filter, productListActiveClass,
@@ -32,9 +32,5 @@ angular.module("sportsStore")
 
 	$scope.addProductToCart = function (product) {
 		cart.addProduct(product.objectId, product.name, product.price);
-	}
-
-	$scope.switchToListGrid = function (id, className) {
-		
 	}
 });

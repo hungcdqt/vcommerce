@@ -1,5 +1,5 @@
-angular.module("productList",[])
-.directive("switcher", function () {
+angular.module("productList")
+.directive("productlst", function () {
 	return {
 		link: function (scope, element, attrs) {
 			scope.gridactive= "";
@@ -35,9 +35,11 @@ angular.module("productList",[])
 			restrict: "E",
 			scope: {
 					switchView: "&",
-					data: "=source"
+					data: "=source",
+					pageSize:"=pageSize",
+					selectedPage:"=selectedPage"
 					},
-			templateUrl: "directives/template/switcher.html",
+			templateUrl: "components/product_list/productListTemplate.html",
 			transclude: true
 		}
 	});
