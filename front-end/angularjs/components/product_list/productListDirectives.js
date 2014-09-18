@@ -2,6 +2,10 @@ angular.module("productList")
 .directive("productlst", function () {
 	return {
 		link: function (scope, element, attrs) {
+			
+			console.log("pageSize:" + scope.pageSize);
+			console.log("pageCount:" + scope.pageCount);
+
 			scope.gridactive= "";
 			scope.listactive = "active";
 			scope.switchView = function () {
@@ -31,15 +35,21 @@ angular.module("productList")
 					// update all thumbnails to larger size
 					element.find("img").attr("src",gridthumb);
 				}	
-			};		},
-			restrict: "E",
-			scope: {
-					switchView: "&",
-					data: "=source",
-					pageSize:"=pageSize",
-					selectedPage:"=selectedPage"
-					},
-			templateUrl: "components/product_list/productListTemplate.html",
-			transclude: true
+			};		
+		},
+		restrict: "E",
+		scope: {
+				data: "=source",
+				pageSize:"@pageSize",
+				categoryFilterFn:"&FilterFn"
+				},
+		templateUrl: "components/product_list/productListTemplate.html",
+		transclude: true
 		}
 	});
+
+/*
+one-way bindings on isolated scopes are always evaluated to string values. 
+You must use a two-way binding if you want to access an array, 
+even if you don’t intend to modify it
+*/

@@ -8,7 +8,7 @@
 			</a>
 		</span>
 
-		<span class="pull-right btn-group">
+	<!--	<span class="pull-right btn-group">
 			<a 
 			ng-repeat="page in data | filter: pageCount:pageSize"
 			ng-click = "selectPage($index + 1)" class="btn btn-default"
@@ -16,11 +16,11 @@
 			{{$index + 1}}
 			</a>
 		</span>
-			
+	-->		
 	</div>
 	<div class="panel">
 		<ul id="products" class="list clearfix">
-			<li class="well clearfix"  ng-repeat="item in data ">
+			<li class="well clearfix"  ng-repeat="item in data | filter:FilterFn">
 				<section class="left">
 					<img src="images/products/list-default-thumb.png" alt="default thumb" class="thumb">
 					<h3>{{item.name}}</h3>
@@ -29,7 +29,7 @@
 
 				<section class="right">
 					<span class = "price pull-right label label-primary">
-						{{item.price || currency}}
+						{{item.price}}
 					</span>
 					<span class="darkview">
 						<button ng-click="addProductToCart(item)" class="btn btn-success pull-right">
@@ -41,7 +41,5 @@
 
 			</li>
 		</ul>	
-	</div>
-	<div class="panel-body" ng-transclude>
 	</div>
 </div>

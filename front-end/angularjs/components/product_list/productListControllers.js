@@ -5,7 +5,6 @@ angular.module("productList",[])
 	productListPageCount, cart) {
 	
 	var selectedCategory = null;
-
 	$scope.selectedPage = 1;
 	$scope.pageSize = productListPageCount;
 

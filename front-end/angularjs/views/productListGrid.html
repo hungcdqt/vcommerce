@@ -8,8 +8,8 @@
 		</a>
 	</div>
 
-	<productlst class="col-xs-8" source="data.products | filter:categoryFilterFn"
-		page-size="$scope.pageSize" selected-page="selectedPage">
+	<productlst class="col-xs-8" source="data.products" FilterFn="categoryFilterFn()"
+		page-size="{{pageSize}}">
 	</productlst>
 
 	
