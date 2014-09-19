@@ -1,0 +1,8 @@
+<div class="col-xs-3">
+	<a ng-click="selectCategory()" class="btn btn-block btn-default btn-lg">Home</a>
+	<a ng-repeat="item in data | orderBy:'category' | unique:'category'"
+	ng-click="selectCategory(item)" class="btn btn-block btn-default btn-lg"
+	ng-class="getCategoryClass(item)">
+	{{item}}
+	</a>
+</div>

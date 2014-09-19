@@ -1,10 +1,9 @@
 angular.module("productList")
-.directive("productlst", function () {
+.directive("productlst",["$filter" ,function () {
 	return {
 		link: function (scope, element, attrs) {
 			
 			console.log("pageSize:" + scope.pageSize);
-			console.log("pageCount:" + scope.pageCount);
 
 			scope.gridactive= "";
 			scope.listactive = "active";
@@ -40,13 +39,30 @@ angular.module("productList")
 		restrict: "E",
 		scope: {
 				data: "=source",
-				pageSize:"@pageSize",
-				categoryFilterFn:"&FilterFn"
+				pageSize: "@pageSize",
+				categoryFilterFn: "&filterFn",
+				SelectedCategoryFn: "&selectedCategoryFn",
+				category:"@"
 				},
-		templateUrl: "components/product_list/productListTemplate.html",
-		transclude: true
+		templateUrl: "components/product_list/productListTemplate.html"
+		//,transclude: true
 		}
-	});
+	}])
+.directive("categorylst",["$filter" ,function () {
+	return {
+		link: function (scope, element, attrs) {
+
+		},
+		restrict: "E",
+		scope: {
+			data:"=source",
+			getCategoryClass:"&CategoryClassFn",
+			selectCategory:"&selectCategoryFn"
+		},
+		templateUrl: "components/product_list/categoryListTemplate.html"
+	}
+}])
+;
 
 /*
 one-way bindings on isolated scopes are always evaluated to string values. 

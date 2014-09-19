@@ -1,16 +1,22 @@
 <div class="panel panel-default row" ng-controller="productListCtrl" ng-hide="data.error">
-	<div class="col-xs-3">
+	
+<!-- 	<div class="col-xs-3">
 		<a ng-click="selectCategory()" class="btn btn-block btn-default btn-lg">Home</a>
-		<a ng-repeat="item in data.products | orderBy:'category' | unique:'category'"
+		<a ng-repeat="item in products | orderBy:'category' | unique:'category'"
 		ng-click="selectCategory(item)" class="btn btn-block btn-default btn-lg"
 		ng-class="getCategoryClass(item)">
 		{{item}}
 		</a>
 	</div>
+ -->
+ 	<categorylst class="col-xs-3" source="products" category-class-fn="getCategoryClass" select-category-fn="selectCategory">
 
-	<productlst class="col-xs-8" source="data.products" FilterFn="categoryFilterFn()"
-		page-size="{{pageSize}}">
+ 	</categorylst>
+	<productlst class="col-xs-8" source="products" 
+		page-size="{{pageSize}}" filter-fn="categoryFilterFn" selected-category-fn="getSelectedCategory()" category="category">
+		<!-- looking the difference between the way we pass function above:
+		categoryFilterFn but getSelectedCategory() ???
+		-->
 	</productlst>
 
-	
 </div>

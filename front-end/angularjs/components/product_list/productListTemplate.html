@@ -1,5 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
+		<span class="label label-primary badge">Category: {{SelectedCategoryFn() || "All"}}</span>
 
 		<span class="list-style-buttons">
 			<a href="" ng-click="switchView()" id="gridview" class="switcher {{gridactive}}"><img src="images/grid-view-{{gridactive}}.png" alt="Grid">
@@ -8,19 +9,19 @@
 			</a>
 		</span>
 
-	<!--	<span class="pull-right btn-group">
+		<span class="pull-right btn-group" ng-show="filteredResults.length>1">
 			<a 
-			ng-repeat="page in data | filter: pageCount:pageSize"
+			ng-repeat="page in filteredResults=(data | filter:categoryFilterFn() | pageCount:pageSize)"
 			ng-click = "selectPage($index + 1)" class="btn btn-default"
 			ng-class = "getPageClass($index + 1)">
 			{{$index + 1}}
-			</a>
+			</a>	
+			<!-- filteredResults can be re-used in template -->
 		</span>
-	-->		
 	</div>
 	<div class="panel">
 		<ul id="products" class="list clearfix">
-			<li class="well clearfix"  ng-repeat="item in data | filter:FilterFn">
+			<li class="well clearfix"  ng-repeat="item in data | filter:categoryFilterFn()">
 				<section class="left">
 					<img src="images/products/list-default-thumb.png" alt="default thumb" class="thumb">
 					<h3>{{item.name}}</h3>
@@ -29,13 +30,17 @@
 
 				<section class="right">
 					<span class = "price pull-right label label-primary">
-						{{item.price}}
+						{{item.price | currency:"VND"}}
 					</span>
 					<span class="darkview">
 						<button ng-click="addProductToCart(item)" class="btn btn-success pull-right">
 							Add to cart
 						</button>
-						<span class="lead">{{item.description}}</span>						
+						<span class="lead">{{item.description}}</span>	
+
+						<span>
+							getExpiryDate(p.expiry) | date:"dd MMM yy"
+						</span>					
 					</span>
 				</section>
 
