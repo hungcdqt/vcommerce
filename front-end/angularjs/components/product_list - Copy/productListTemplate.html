@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<span class="label label-primary badge">Category: {{selectedCategoryFn() || "All"}}</span>
+		<span class="label label-primary badge">Category: {{SelectedCategoryFn() || "All"}}</span>
 
 		<span class="list-style-buttons">
 			<a href="" ng-click="switchView()" id="gridview" class="switcher {{gridactive}}"><img src="images/grid-view-{{gridactive}}.png" alt="Grid">
@@ -21,7 +21,7 @@
 	</div>
 	<div class="panel">
 		<ul id="products" class="list clearfix">
-			<li class="well clearfix"  ng-repeat="item in data | filter:selectedCategory">
+			<li class="well clearfix"  ng-repeat="item in data | filter:categoryFilterFn()">
 				<section class="left">
 					<img src="images/products/list-default-thumb.png" alt="default thumb" class="thumb">
 					<h3>{{item.name}}</h3>

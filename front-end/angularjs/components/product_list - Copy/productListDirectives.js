@@ -1,19 +1,22 @@
 angular.module("productList")
 .directive("categorynode", function () {
 	return {
-		require: "^categorylst",
-		link: function (scope, element, attrs, ctl) {
-			
+		require: ["^categorylst","^productlst"],
+		link: function (scope, element, attrs, ctls) {
+			var catlstctl = ctls[0], productlstctl = ctls[1];
 			scope.handleEvent = function (e) {
-				ctl.selectCategory(element.attr("id"));
+				//console.log("Event: " + e);
+				console.log("elementid:" + element.attr("id"));
+				//ctl.selectCategoryctl(element.attr("id"));
+				productlstctl.selectCategory(element.attr("id"));
 			}
 		}
 	}
 })
 .directive("productlst",["$filter" ,function () {
 	return {
-		require: "^categorylst",
-		link: function (scope, element, attrs, ctl) {
+		transclude: true,
+		link: function (scope, element, attrs) {
 			
 			console.log("pageSize:" + scope.pageSize);
 
@@ -47,21 +50,19 @@ angular.module("productList")
 					element.find("img").attr("src",gridthumb);
 				}	
 			};
-			scope.$watch(ctl.getSelectedCategory(), function (newValue, oldValue) {
-				scope.selectedCategory = newValue;
-				console.log("in side watch: newValue=" + newValue);
-			});
-			// scope.$watch(function () {
-			// 	scope.selectedCategory = ctl.getSelectedCategory();
-			// 	console.log("in side watch: selectedCategory=" + scope.selectedCategory);
-			// })
 		},
-		restrict: "AE",
+		controller: function ($scope, $element, $attrs) {
+			this.selectCategory = function (category) {
+				scope.selectedCategory = category;
+				console.log("ready to use category = " + category);
+			}
+		},
+		restrict: "E",
 		scope: {
 				data: "=source",
 				pageSize: "@pageSize",
 				categoryFilterFn: "&filterFn",
-				selectedCategoryFn: "&selectedCategoryFn",
+				SelectedCategoryFn: "&selectedCategoryFn",
 				category:"=",
 				selectCategoryFn:"&selectCategoryFn"
 				},
@@ -72,27 +73,30 @@ angular.module("productList")
 	return {
 		transclude:true,
 		link: function (scope, element, attrs) {
+			scope.selectCategorydrt = function () {
+			// find('#id')
+			//angular.element(document.querySelector('#id'))
+			//find('.classname'), assumes you already have the starting elem to search from
+			//angular.element(elem.querySelector('.classname'))
+
+
+				console.log("i am in directive"+ element.text());
+			}
 		},
 		controller: function ($scope, $element, $attrs) {
-			this.selectCategory = function (cat) {
-				// $scope.$apply(function (cat) {
-				// 	$scope.selectedCategory = cat;	
-				// })				
-				$scope.selectedCategory = cat;
-				console.log("$scope.selectedCategory = " + cat);
-				$scope.selectCategoryFn({category:cat});
-				//console.log($scope.selectCategoryFn);
-				console.log("getSelectedCategory=" + $scope.getSelectedCategoryFn());
-			};
-			this.getSelectedCategory = function () {
-				return $scope.selectedCategory;
+			this.selectCategoryctl = function (cat) {
+				console.log("cat:" + cat);
+				$scope.selectCategory(cat);
+				console.log("selectedCategory: " + $scope.selectedCategoryFn());
 			}
 		},
 		restrict: "E",
 		scope: {
 			data:"=source",
-			getSelectedCategoryFn:"&",
-			selectCategoryFn:"&selectCategoryFn"
+			getCategoryClassFn:"&",
+			selectedCategoryFn: "&",
+			category:"@",
+			selectCategory:"&"
 		},
 		templateUrl: "components/product_list/categoryListTemplate.html"
 	}

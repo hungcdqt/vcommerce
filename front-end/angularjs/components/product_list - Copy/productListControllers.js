@@ -28,10 +28,6 @@ angular.module("productList",[])
 		console.log("i am here: productlist'scontroller, newCategory:" + newCategory);
 	}
 
-	$scope.getSelectedCategory = function () {
-		return $scope.infor.selectedCategory;
-	}
-
 	$scope.selectPage = function (newPage) {
 		$scope.selectedPage = newPage;
 	}
@@ -50,6 +46,10 @@ angular.module("productList",[])
 
 	$scope.addProductToCart = function (product) {
 		cart.addProduct(product.objectId, product.name, product.price);
+	}
+
+	$scope.getSelectedCategory = function () {
+		return $scope.infor.selectedCategory;
 	}
 
 	$scope.getExpiryDate = function (days) {
