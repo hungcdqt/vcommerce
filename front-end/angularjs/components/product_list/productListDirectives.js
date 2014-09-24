@@ -5,7 +5,9 @@ angular.module("productList")
 		link: function (scope, element, attrs, ctl) {
 			
 			scope.handleEvent = function (e) {
-				ctl.selectCategory(element.attr("id"));
+				var cat = element.attr("id");
+				ctl.selectCategory(cat);
+				element.addClass(ctl.getCategoryClass(cat));
 			}
 		}
 	}
@@ -13,12 +15,15 @@ angular.module("productList")
 .directive("productlst",["$filter" ,function () {
 	return {
 		require: "^categorylst",
+		replace: true,
 		link: function (scope, element, attrs, ctl) {
 			
-			console.log("pageSize:" + scope.pageSize);
-
 			scope.gridactive= "";
 			scope.listactive = "active";
+			scope.selectedPage = 1;
+
+			console.log("Link - selectedPage:" + scope.selectedPage);
+
 			scope.switchView = function () {
 				if (scope.gridactive != "active") {
 					scope.gridactive= "active";
@@ -47,30 +52,28 @@ angular.module("productList")
 					element.find("img").attr("src",gridthumb);
 				}	
 			};
-			scope.$watch(ctl.getSelectedCategory(), function (newValue, oldValue) {
-				scope.selectedCategory = newValue;
-				console.log("in side watch: newValue=" + newValue);
-			});
-			// scope.$watch(function () {
-			// 	scope.selectedCategory = ctl.getSelectedCategory();
-			// 	console.log("in side watch: selectedCategory=" + scope.selectedCategory);
-			// })
+			// scope.$watch(ctl.getSelectedCategory(), function (newValue, oldValue) {
+			// 	scope.selectedCategory = newValue;
+			// 	console.log("in side watch: newValue=" + newValue);
+			// });
+			scope.selectPage = function (page) {
+				scope.selectedPage = page;
+				console.log("selectPage:" + scope.selectedPage)
+			};
 		},
 		restrict: "AE",
 		scope: {
 				data: "=source",
-				pageSize: "@pageSize",
+				pageSize: "=pageSize",
 				categoryFilterFn: "&filterFn",
-				selectedCategoryFn: "&selectedCategoryFn",
-				category:"=",
-				selectCategoryFn:"&selectCategoryFn"
-				},
+				selectedCategoryFn: "&"				},
 		templateUrl: "components/product_list/productListTemplate.html"
 		}
 	}])
 .directive("categorylst",["$filter" ,function () {
 	return {
 		transclude:true,
+		replace: true,
 		link: function (scope, element, attrs) {
 		},
 		controller: function ($scope, $element, $attrs) {
@@ -78,20 +81,20 @@ angular.module("productList")
 				// $scope.$apply(function (cat) {
 				// 	$scope.selectedCategory = cat;	
 				// })				
-				$scope.selectedCategory = cat;
-				console.log("$scope.selectedCategory = " + cat);
-				$scope.selectCategoryFn({category:cat});
-				//console.log($scope.selectCategoryFn);
-				console.log("getSelectedCategory=" + $scope.getSelectedCategoryFn());
+				$scope.selectedCategory = (cat=="SelectAll"? null:cat);
+				$scope.selectCategoryFn({category:(cat=="SelectAll"? null:cat)}); 
+				//Notes: this is one of ways (not elegant) to pass parameter from ctroller to directives, the key name must be matched through
+				//It’s important that the parameter name match with the property name defined in the object literal
+				//http://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-3-isolate-scope-and-function-parameters
 			};
-			this.getSelectedCategory = function () {
-				return $scope.selectedCategory;
-			}
+			this.getCategoryClass = function (category) {
+				return $scope.categoryClassFn(category);
+			};
 		},
 		restrict: "E",
 		scope: {
 			data:"=source",
-			getSelectedCategoryFn:"&",
+			categoryClassFn:"&",
 			selectCategoryFn:"&selectCategoryFn"
 		},
 		templateUrl: "components/product_list/categoryListTemplate.html"

@@ -21,7 +21,7 @@
 	</div>
 	<div class="panel">
 		<ul id="products" class="list clearfix">
-			<li class="well clearfix"  ng-repeat="item in data | filter:selectedCategory">
+			<li class="well clearfix"  ng-repeat="item in data | filter:selectedCategoryFn() | range:selectedPage:pageSize">
 				<section class="left">
 					<img src="images/products/list-default-thumb.png" alt="default thumb" class="thumb">
 					<h3>{{item.name}}</h3>

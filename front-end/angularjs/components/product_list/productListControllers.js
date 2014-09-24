@@ -25,7 +25,7 @@ angular.module("productList",[])
 	$scope.selectCategory = function (newCategory) {
 		$scope.selectedPage = 1;
 		$scope.infor.selectedCategory = newCategory;
-		console.log("i am here: productlist'scontroller, newCategory:" + newCategory);
+		console.log("In productListCtrl, newCategory:" + newCategory);
 	}
 
 	$scope.getSelectedCategory = function () {
