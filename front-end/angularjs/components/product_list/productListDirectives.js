@@ -6,6 +6,7 @@ angular.module("productList")
 			
 			scope.handleEvent = function (e) {
 				var cat = element.attr("id");
+				ctl.resetCategoryClass();
 				ctl.selectCategory(cat);
 				element.addClass(ctl.getCategoryClass(cat));
 			}
@@ -88,7 +89,10 @@ angular.module("productList")
 				//http://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-3-isolate-scope-and-function-parameters
 			};
 			this.getCategoryClass = function (category) {
-				return $scope.categoryClassFn(category);
+				return $scope.categoryClassFn({category: category});
+			};
+			this.resetCategoryClass = function () {
+				$element.find("a").removeClass("btn-primary");
 			};
 		},
 		restrict: "E",

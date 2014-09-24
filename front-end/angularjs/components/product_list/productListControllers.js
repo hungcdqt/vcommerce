@@ -41,6 +41,7 @@ angular.module("productList",[])
 	}
 
 	$scope.getCategoryClass = function (category) {
+		console.log("category:" + category + ", selectedCategory: " + $scope.infor.selectedCategory);
 		return $scope.infor.selectedCategory == category ? productListActiveClass : "";
 	}
 
