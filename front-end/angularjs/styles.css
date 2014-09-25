@@ -1,20 +1,3 @@
-* { margin: 0; padding: 0; }
-
-body { background: #1b1f2b; font-size: 62.5%; font-family: Tahoma, Arial, sans-serif; color: #333; padding-bottom: 25px; }
-
-img { border:0; }
-
-p { font-size: 1.2em; line-height: 1.3em; margin-bottom: 10px; }
-
-h1 { font-weight: normal; font-size: 1.9em; line-height: 2.0em; color: #545454; letter-spacing: -0.04em; }
-
-/** containers **/
-#wrap { width: 700px; margin: 0 auto; background: #d7dfe0; border-radius: 7px; margin-top: 55px; }
-#wrap header { border-bottom: 1px solid #b6bdbe; margin: 15px 22px; margin-bottom: 35px; padding-top: 20px; position: relative;  }
-
-#wrap footer { border-top: 1px solid #b6bdbe; padding-bottom: 40px; margin: 15px 22px;  }
-
-#wrap header .list-style-buttons { position: absolute; right: 0; }
 
 /** list view **/
 ul.list { list-style: none; width: 100%; }

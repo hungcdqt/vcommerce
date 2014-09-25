@@ -1,14 +1,16 @@
-<div class="panel panel-default row" ng-controller="productListCtrl" ng-hide="data.error">
+<div class="my-gallery" ng-controller="productListCtrl" ng-hide="data.error">
 	
  	<categorylst source="products" get-category-class-fn="getCategoryClass" select-category-fn="selectCategory(category)" get-selected-category-fn="getSelectedCategory()" category-class-fn="getCategoryClass(category)">
-
-		<productlst source="products" 
-			page-size="pageSize" filter-fn="categoryFilterFn" selected-category-fn="getSelectedCategory()">
-			<!-- looking the difference between the way we pass function above:
-			categoryFilterFn but getSelectedCategory() ???
-			-->
-		</productlst>
-
  	</categorylst>
+
+	<productlst source="products"
+		page-size="pageSize" filter-fn="categoryFilterFn" selected-category-fn="getSelectedCategory()"
+		add-product-to-cart-fn="addProductToCart" get-expiry-date-fn="getExpiryDate"
+		get-selected-page-class-fn="getSelectedPageClass()">
+		<!-- looking the difference between the way we pass function above:
+		categoryFilterFn vs getSelectedCategory()
+		addProductToCart vs selectCategory(category) : two ways of passing parameters
+		-->
+	</productlst>
 
 </div>

@@ -18,14 +18,12 @@ angular.module("productList",[])
 	$scope.infor = {
 		selectedCategory : null
 	};
-	//selectedCategory = null; 
-	$scope.selectedPage = 1;
+
 	$scope.pageSize = productListPageCount;
 
 	$scope.selectCategory = function (newCategory) {
-		$scope.selectedPage = 1;
 		$scope.infor.selectedCategory = newCategory;
-		console.log("In productListCtrl, newCategory:" + newCategory);
+		//console.log("In productListCtrl, newCategory:" + newCategory);
 	}
 
 	$scope.getSelectedCategory = function () {
@@ -41,12 +39,12 @@ angular.module("productList",[])
 	}
 
 	$scope.getCategoryClass = function (category) {
-		console.log("category:" + category + ", selectedCategory: " + $scope.infor.selectedCategory);
+		//console.log("category:" + category + ", selectedCategory: " + $scope.infor.selectedCategory);
 		return $scope.infor.selectedCategory == category ? productListActiveClass : "";
 	}
 
-	$scope.getPageClass = function (page) {
-		return $scope.selectedPage == page ? productListActiveClass : "";
+	$scope.getSelectedPageClass = function () {
+		return productListActiveClass;
 	}
 
 	$scope.addProductToCart = function (product) {

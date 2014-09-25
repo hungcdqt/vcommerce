@@ -1,27 +1,30 @@
 angular.module("productList")
 .directive("categorynode", function () {
 	return {
-		require: ["^categorylst","^productlst"],
-		link: function (scope, element, attrs, ctls) {
-			var catlstctl = ctls[0], productlstctl = ctls[1];
+		require: "^categorylst",
+		link: function (scope, element, attrs, ctl) {
+			
 			scope.handleEvent = function (e) {
-				//console.log("Event: " + e);
-				console.log("elementid:" + element.attr("id"));
-				//ctl.selectCategoryctl(element.attr("id"));
-				productlstctl.selectCategory(element.attr("id"));
+				var cat = element.attr("id") == "SelectAll" ? null:element.attr("id");
+				ctl.resetCategoryClass();
+				ctl.selectCategory(cat);
+				element.addClass(ctl.getCategoryClass(cat));
 			}
 		}
 	}
 })
 .directive("productlst",["$filter" ,function () {
 	return {
-		transclude: true,
-		link: function (scope, element, attrs) {
+		require: "^categorylst",
+		replace: true,
+		link: function (scope, element, attrs, ctl) {
 			
-			console.log("pageSize:" + scope.pageSize);
-
 			scope.gridactive= "";
 			scope.listactive = "active";
+			scope.selectedPage = 1;
+
+			console.log("Link - selectedPage:" + scope.selectedPage);
+
 			scope.switchView = function () {
 				if (scope.gridactive != "active") {
 					scope.gridactive= "active";
@@ -50,21 +53,23 @@ angular.module("productList")
 					element.find("img").attr("src",gridthumb);
 				}	
 			};
+			// scope.$watch(ctl.getSelectedCategory(), function (newValue, oldValue) {
+			// 	scope.selectedCategory = newValue;
+			// 	console.log("in side watch: newValue=" + newValue);
+			// });
+			scope.selectPage = function (page) {
+				scope.selectedPage = page;
+				//console.log("selectPage:" + scope.selectedPage)
+			};
 		},
-		controller: function ($scope, $element, $attrs) {
-			this.selectCategory = function (category) {
-				scope.selectedCategory = category;
-				console.log("ready to use category = " + category);
-			}
-		},
-		restrict: "E",
+		restrict: "AE",
 		scope: {
 				data: "=source",
-				pageSize: "@pageSize",
+				pageSize: "=pageSize",
 				categoryFilterFn: "&filterFn",
-				SelectedCategoryFn: "&selectedCategoryFn",
-				category:"=",
-				selectCategoryFn:"&selectCategoryFn"
+				selectedCategoryFn: "&",
+				addProductToCartFn: "&",
+				getExpiryDateFn: "&"
 				},
 		templateUrl: "components/product_list/productListTemplate.html"
 		}
@@ -72,31 +77,32 @@ angular.module("productList")
 .directive("categorylst",["$filter" ,function () {
 	return {
 		transclude:true,
+		replace: true,
 		link: function (scope, element, attrs) {
-			scope.selectCategorydrt = function () {
-			// find('#id')
-			//angular.element(document.querySelector('#id'))
-			//find('.classname'), assumes you already have the starting elem to search from
-			//angular.element(elem.querySelector('.classname'))
-
-
-				console.log("i am in directive"+ element.text());
-			}
 		},
 		controller: function ($scope, $element, $attrs) {
-			this.selectCategoryctl = function (cat) {
-				console.log("cat:" + cat);
-				$scope.selectCategory(cat);
-				console.log("selectedCategory: " + $scope.selectedCategoryFn());
-			}
+			this.selectCategory = function (cat) {
+				// $scope.$apply(function (cat) {
+				// 	$scope.selectedCategory = cat;	
+				// })				
+				$scope.selectedCategory = cat;//(cat=="SelectAll"? null:cat);
+				$scope.selectCategoryFn({category:cat}); 
+				//Notes: this is one of ways (not elegant) to pass parameter from ctroller to directives, the key name must be matched through
+				//It’s important that the parameter name match with the property name defined in the object literal
+				//http://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-3-isolate-scope-and-function-parameters
+			};
+			this.getCategoryClass = function (category) {
+				return $scope.categoryClassFn({category: category});
+			};
+			this.resetCategoryClass = function () {
+				$element.find("a").removeClass("btn-primary");
+			};
 		},
 		restrict: "E",
 		scope: {
 			data:"=source",
-			getCategoryClassFn:"&",
-			selectedCategoryFn: "&",
-			category:"@",
-			selectCategory:"&"
+			categoryClassFn:"&",
+			selectCategoryFn:"&selectCategoryFn"
 		},
 		templateUrl: "components/product_list/categoryListTemplate.html"
 	}

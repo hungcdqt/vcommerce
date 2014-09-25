@@ -25,7 +25,11 @@ angular.module("productList",[])
 	$scope.selectCategory = function (newCategory) {
 		$scope.selectedPage = 1;
 		$scope.infor.selectedCategory = newCategory;
-		console.log("i am here: productlist'scontroller, newCategory:" + newCategory);
+		//console.log("In productListCtrl, newCategory:" + newCategory);
+	}
+
+	$scope.getSelectedCategory = function () {
+		return $scope.infor.selectedCategory;
 	}
 
 	$scope.selectPage = function (newPage) {
@@ -37,6 +41,7 @@ angular.module("productList",[])
 	}
 
 	$scope.getCategoryClass = function (category) {
+		//console.log("category:" + category + ", selectedCategory: " + $scope.infor.selectedCategory);
 		return $scope.infor.selectedCategory == category ? productListActiveClass : "";
 	}
 
@@ -46,10 +51,6 @@ angular.module("productList",[])
 
 	$scope.addProductToCart = function (product) {
 		cart.addProduct(product.objectId, product.name, product.price);
-	}
-
-	$scope.getSelectedCategory = function () {
-		return $scope.infor.selectedCategory;
 	}
 
 	$scope.getExpiryDate = function (days) {

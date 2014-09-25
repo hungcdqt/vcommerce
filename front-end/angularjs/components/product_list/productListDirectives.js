@@ -15,7 +15,7 @@ angular.module("productList")
 })
 .directive("productlst",["$filter" ,function () {
 	return {
-		require: "^categorylst",
+		require: "?categorylst",
 		replace: true,
 		link: function (scope, element, attrs, ctl) {
 			
@@ -59,15 +59,23 @@ angular.module("productList")
 			// });
 			scope.selectPage = function (page) {
 				scope.selectedPage = page;
-				console.log("selectPage:" + scope.selectedPage)
+				//console.log("selectPage:" + scope.selectedPage)
 			};
+			scope.getPageClass = function (page) {
+				return scope.selectedPage == page ? scope.getSelectedPageClassFn() : "";
+			};
+
 		},
 		restrict: "AE",
 		scope: {
 				data: "=source",
 				pageSize: "=pageSize",
 				categoryFilterFn: "&filterFn",
-				selectedCategoryFn: "&"				},
+				selectedCategoryFn: "&",
+				addProductToCartFn: "&",
+				getExpiryDateFn: "&",
+				getSelectedPageClassFn: "&"
+				},
 		templateUrl: "components/product_list/productListTemplate.html"
 		}
 	}])
