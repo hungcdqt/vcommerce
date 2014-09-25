@@ -5,7 +5,7 @@ angular.module("productList")
 		link: function (scope, element, attrs, ctl) {
 			
 			scope.handleEvent = function (e) {
-				var cat = element.attr("id");
+				var cat = element.attr("id") == "SelectAll" ? null:element.attr("id");
 				ctl.resetCategoryClass();
 				ctl.selectCategory(cat);
 				element.addClass(ctl.getCategoryClass(cat));
@@ -82,8 +82,8 @@ angular.module("productList")
 				// $scope.$apply(function (cat) {
 				// 	$scope.selectedCategory = cat;	
 				// })				
-				$scope.selectedCategory = (cat=="SelectAll"? null:cat);
-				$scope.selectCategoryFn({category:(cat=="SelectAll"? null:cat)}); 
+				$scope.selectedCategory = cat;//(cat=="SelectAll"? null:cat);
+				$scope.selectCategoryFn({category:cat}); 
 				//Notes: this is one of ways (not elegant) to pass parameter from ctroller to directives, the key name must be matched through
 				//It’s important that the parameter name match with the property name defined in the object literal
 				//http://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-3-isolate-scope-and-function-parameters
