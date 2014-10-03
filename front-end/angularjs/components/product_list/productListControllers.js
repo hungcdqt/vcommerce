@@ -1,6 +1,6 @@
 angular.module("productList",[])
 .constant("productListActiveClass","btn-primary")
-.constant("productListPageCount",3)
+.constant("productListPageCount",10)
 .controller("productListCtrl", function ($scope, $filter, productListActiveClass,
 	productListPageCount, cart) {
 	
@@ -13,7 +13,18 @@ angular.module("productList",[])
 	{ name: "Trout", category: "Fish", price: 12.93, expiry: 4 },
 	{ name: "Beer", category: "Drinks", price: 2.99, expiry: 365 },
 	{ name: "Wine", category: "Drinks", price: 8.99, expiry: 365 },
-	{ name: "Whiskey", category: "Drinks", price: 45.99, expiry: 365 }
+	{ name: "Whiskey", category: "Drinks", price: 45.99, expiry: 365 },
+
+	{ name: "Coconut", category: "Fruit", price: 1.20, expiry: 10 },
+	{ name: "Serry", category: "Fruit", price: 2.42, expiry: 7 },
+	{ name: "Gouva", category: "Fruit", price: 2.02, expiry: 6 },
+	{ name: "GLobber", category: "Fish", price: 20.45, expiry: 3 },
+	{ name: "Sharp", category: "Fish", price: 17.93, expiry: 2 },
+	{ name: "Mackerel", category: "Fish", price: 12.93, expiry: 4 },
+	{ name: "Larue", category: "Drinks", price: 2.99, expiry: 365 },
+	{ name: "Heneken", category: "Drinks", price: 8.99, expiry: 365 },
+	{ name: "Halida", category: "Drinks", price: 45.99, expiry: 365 }
+
 	];
 	$scope.infor = {
 		selectedCategory : null

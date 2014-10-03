@@ -4,7 +4,7 @@
 	<title>SportsStore</title>
 	<link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 	<link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="styles-.css">
 	<script src="bower_components/angular/angular.js"></script>
 	
 	<script src="controllers/sportsStore.js"></script>
@@ -14,12 +14,89 @@
 	<script src="components/cart/cart.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="controllers/checkoutControllers.js"></script>
+
+	<style type="text/css">
+		.float-right {
+			float: right;
+		}
+		.float-left {
+			float: left;
+		}
+		#header {
+			z-index: 99;
+			height: 200px;
+			background-color: black;
+		}
+		footer {
+			height: 200px;
+			background-color: black;
+		}
+		.go-home {
+			background-color: white;
+			background: url(images/home-icon-transparent32.jpg) no-repeat left center;
+		}
+		#nav {
+			text-align: center;
+		}
+		#nav ul {
+			margin: 0 auto;
+		}
+		#nav a {
+			color: black;
+			text-decoration: none;
+			text-transform: uppercase;
+			font-weight: bold;
+			border: 1px dashed #999;
+			border-bottom: none;
+			padding: 7px 20px;
+			display: block;
+			background-color: gray;
+		}
+		#nav ul li{
+		    display: inline-block;			
+		}
+		#nav a:hover {
+			text-decoration: none;
+			font-weight: bold;
+			background-color: #B2F511;
+			background-position: 3px 50%;
+		}
+		li {
+			list-style: none;
+		}
+
+
+	</style>
+
 </head>
 
 <body ng-controller = "sportsStoreCtrl">
-	<div class="navbar navbar-inverse">
-		<a class="navbar-brand" href="#">SPORTS STORE</a>
-		<cart-summary />
+	<div id="header">
+		<div class="menu fixed-top">
+		<a class="float-left go-home"></a>
+		<div class="float-right navbar navbar-inverse">
+			<cart-summary />
+		</div>
+		<div id="nav">
+			<ul>
+				<li>
+					<a class="g" href="#">
+						Introduction
+					</a>
+				</li>
+				<li>
+					<a class="" href="#">
+						Feature
+					</a>
+				</li>
+				<li>
+					<a class="" href="#">
+						About
+					</a>
+				</li>
+			</ul>
+		</div>
+		</div>
 	</div>
 
 	<div class="alert alert-danger" ng-show="data.error">
@@ -33,7 +110,12 @@
 	1) how angular update remaining categories other than selected one 
 	2) return $filter("limitTo")(data.splice(start_index),size);//data.splice(start_index,size)
 	3) Inheritance issue: chapter 13- listing 11.js
-	-->
+-->
+<footer style="display:none">
+	<ul>
 
+	</ul>
+	@copyright @2014
+</footer>
 </body>
 </html>
