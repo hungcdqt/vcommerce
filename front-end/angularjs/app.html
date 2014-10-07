@@ -26,6 +26,12 @@
 			z-index: 99;
 			height: 200px;
 			background-color: black;
+			width: 100%;
+			position: fixed;
+		}
+		.main-content {
+			position: relative;
+			top: 200px;
 		}
 		footer {
 			height: 200px;
@@ -34,6 +40,8 @@
 		.go-home {
 			background-color: white;
 			background: url(images/home-icon-transparent32.jpg) no-repeat left center;
+			padding-left: 35px;
+			width: 55px;
 		}
 		#nav {
 			text-align: center;
@@ -73,7 +81,7 @@
 <body ng-controller = "sportsStoreCtrl">
 	<div id="header">
 		<div class="menu fixed-top">
-		<a class="float-left go-home"></a>
+		<a href="#" class="float-left go-home">Home</a>
 		<div class="float-right navbar navbar-inverse">
 			<cart-summary />
 		</div>
@@ -99,11 +107,14 @@
 		</div>
 	</div>
 
-	<div class="alert alert-danger" ng-show="data.error">
-		Error ({{data.error.status}}). The product data was not loaded.
-		<a href="/app.html" class="alert-link">Click here to try again</a>
+	<div class="main-content">
+		<div class="alert alert-danger" ng-show="data.error">
+			Error ({{data.error.status}}). The product data was not loaded.
+			<a href="/app.html" class="alert-link">Click here to try again</a>
+		</div>
+		<ng-view />
 	</div>
-	<ng-view />
+	
 	<!-- 
 	<ng-include src="'views/productList.html'"> </ng-include>
 

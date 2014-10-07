@@ -2,26 +2,27 @@
 
 
 <div class="col-xs-8">
-	
-	<span class="label label-primary badge">Category: {{selectedCategoryFn() || "All"}}
-	</span> 
+	<div class="panel-body">
+		<span class="label label-primary badge">Category: {{selectedCategoryFn() || "All"}}
+		</span> 
 
-	<span class="list-style-buttons">
-		<a href="" ng-click="switchView()" id="gridview" class="switcher {{gridactive}}"><img src="images/grid-view-{{gridactive}}.png" alt="Grid">
-		</a>
-		<a href="" ng-click="switchView()" id="listview" class="switcher {{listactive}}"><img src="images/list-view-{{listactive}}.png" alt="List">
-		</a>
-	</span>
+		<span class="list-style-buttons">
+			<a href="" ng-click="switchView()" id="gridview" class="switcher {{gridactive}}"><img src="images/grid-view-{{gridactive}}.png" alt="Grid">
+			</a>
+			<a href="" ng-click="switchView()" id="listview" class="switcher {{listactive}}"><img src="images/list-view-{{listactive}}.png" alt="List">
+			</a>
+		</span>
 
-	<span class="pull-right btn-group" ng-show="filteredResults.length>1">
-		<a 
-		ng-repeat="page in filteredResults=(data | filter:categoryFilterFn() | pageCount:pageSize)"
-		ng-click = "selectPage($index + 1)" class="btn btn-default"
-		ng-class = "getPageClass($index + 1)">
-		{{$index + 1}}
-		</a>	
-		<!-- filteredResults can be re-used in template -->
-	</span>
+		<span class="pull-right btn-group" ng-show="filteredResults.length>1">
+			<a 
+			ng-repeat="page in filteredResults=(data | filter:categoryFilterFn() | pageCount:pageSize)"
+			ng-click = "selectPage($index + 1)" class="btn btn-default"
+			ng-class = "getPageClass($index + 1)">
+			{{$index + 1}}
+			</a>	
+			<!-- filteredResults can be re-used in template -->
+		</span>
+	</div>
 	<ul id="products" class="list clearfix">
 		<li class="well clearfix"  ng-repeat="item in data | filter:selectedCategoryFn() | range:selectedPage:pageSize">
 			<section class="left">
