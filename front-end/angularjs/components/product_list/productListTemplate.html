@@ -1,53 +1,78 @@
 
-
-
-<div class="col-xs-8">
-	<div class="panel-body">
-		<span class="label label-primary badge">Category: {{selectedCategoryFn() || "All"}}
+<div class="col-xs-9" id="container">
+	<div class="nav navbar">
+		<span class="">Category: {{selectedCategoryFn() || "All"}}
 		</span> 
 
-		<span class="list-style-buttons">
+		<!--<span class="list-style-buttons">
 			<a href="" ng-click="switchView()" id="gridview" class="switcher {{gridactive}}"><img src="images/grid-view-{{gridactive}}.png" alt="Grid">
 			</a>
 			<a href="" ng-click="switchView()" id="listview" class="switcher {{listactive}}"><img src="images/list-view-{{listactive}}.png" alt="List">
 			</a>
 		</span>
 
-		<span class="pull-right btn-group" ng-show="filteredResults.length>1">
+		 <span class="pull-right btn-group" ng-show="filteredResults.length>1">
 			<a 
 			ng-repeat="page in filteredResults=(data | filter:categoryFilterFn() | pageCount:pageSize)"
 			ng-click = "selectPage($index + 1)" class="btn btn-default"
 			ng-class = "getPageClass($index + 1)">
 			{{$index + 1}}
-			</a>	
-			<!-- filteredResults can be re-used in template -->
+			</a>				
+		</span> -->
+		<span class="view-controls-list" id="viewcontrols">
+			<a href="javascript:void(0);" class="gridview {{gridactive}}" ng-click="switchView()"><i class="fa fa-th fa-2x"></i></a>
+			<a href="javascript:void(0);" class="listview {{listactive}}" ng-click="switchView()"><i class="fa fa-list fa-2x"></i></a>
 		</span>
+		<span class="pagination pagination-sm pull-right" ng-show="filteredResults.length>1">
+			<a href="#" 
+			ng-repeat="page in filteredResults=(data | filter:categoryFilterFn() | pageCount:pageSize)"
+			ng-click = "selectPage($index + 1)"
+			ng-class = "getPageClass($index + 1)">
+			{{$index + 1}}
+			</a>
+		</span>		
 	</div>
-	<ul id="products" class="list clearfix">
-		<li class="well clearfix"  ng-repeat="item in data | filter:selectedCategoryFn() | range:selectedPage:pageSize">
-			<section class="left">
-				<img src="images/products/list-default-thumb.png" alt="default thumb" class="thumb">
-				<h3>{{item.name}}</h3>
-				<span class="meta">Product ID: 543J423</span>
+	<ul id="products" class="grid">
+		<li ng-repeat="item in data | filter:selectedCategoryFn() | range:selectedPage:pageSize" class="thumbnail col-sm-4">
+
+			<img src="{{item.image || 'images/products/list-default-thumb.png'}}" 
+				height="250px" width="250px">
+
+			<section class="list-left">
+				<span class="title">{{item.name}}</span>
+				<p>{{item.description}}</p>
+				<div class="icon-group-btn">											
+					<a title="Add to Cart" href="javascript:void(0);" class="btn-cart" 
+						ng-click="addProductToCartFn()(item)">
+						<span class="icon-cart"></span>
+						<span class="icon-cart-text">
+							Add To Cart						
+						</span>
+					</a>
+					<a title="Add to wishlist" href="#" class="btn-wishlist">
+						<span class="icon-wishlist"></span>
+						<span class="icon-wishlist-text">
+							Add To Wishlist						
+						</span>
+					</a>
+					<a title="Add to Compare" href="#" class="btn-compare">
+						<span class="icon-compare"></span>
+						<span class="compare-text">
+							Add To Compare						
+						</span>
+					</a>
+				</div>		
 			</section>
 
-			<section class="right">
-				<span class = "price pull-right label label-primary">
+			<section class="list-right">
+				<span class="price">
 					{{item.price | currency:"VND"}}
 				</span>
-				<span class="darkview">
-					<button ng-click="addProductToCartFn()(item)" class="btn btn-success pull-right">
-						Add to cart
-					</button>
-					<span class="lead">{{item.description}}</span>	
-
-					<span>
-						{{getExpiryDateFn()(item.expiry) | date:"dd MMM yy"}}
-					</span>					
-				</span>
+				<span class="detail"><a href="#" class="button">Details</a></span>
 			</section>
 
 		</li>
 	</ul>	
 
 </div>
+

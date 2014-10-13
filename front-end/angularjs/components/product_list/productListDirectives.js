@@ -19,11 +19,11 @@ angular.module("productList")
 		replace: true,
 		link: function (scope, element, attrs, ctl) {
 			
-			scope.gridactive= "";
-			scope.listactive = "active";
+			scope.gridactive= "active";
+			scope.listactive = "";
 			scope.selectedPage = 1;
 
-			console.log("Link - selectedPage:" + scope.selectedPage);
+			//console.log("Link - selectedPage:" + scope.selectedPage);
 
 			scope.switchView = function () {
 				if (scope.gridactive != "active") {
@@ -35,22 +35,16 @@ angular.module("productList")
 				}
 
 				var theproducts = element.find("ul");
-				var gridthumb = "/images/products/grid-default-thumb.png";
-				var listthumb = "/images/products/list-default-thumb.png";
+				var lis = theproducts.find("li");
 
 				if (scope.gridactive != "active") {
 					// remove the grid view and change to list
-					theproducts.removeClass("grid")
-					theproducts.addClass("list");
-					// update all thumbnails to smaller size
-					element.find("img").attr("src",listthumb);
+					theproducts.removeClass("grid").addClass("list");
+					lis.removeClass("thumbnail").removeClass("col-sm-4");
 				} else {
 					// remove the list class and change to grid
-					theproducts.removeClass("list");
-					theproducts.addClass("grid");
-
-					// update all thumbnails to larger size
-					element.find("img").attr("src",gridthumb);
+					theproducts.removeClass("list").addClass("grid");
+					lis.addClass("thumbnail").addClass("col-sm-4");
 				}	
 			};
 			// scope.$watch(ctl.getSelectedCategory(), function (newValue, oldValue) {
@@ -62,7 +56,7 @@ angular.module("productList")
 				//console.log("selectPage:" + scope.selectedPage)
 			};
 			scope.getPageClass = function (page) {
-				return scope.selectedPage == page ? scope.getSelectedPageClassFn() : "";
+				return scope.selectedPage == page ? "active" : "";
 			};
 
 		},
