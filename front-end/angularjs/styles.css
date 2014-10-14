@@ -73,8 +73,9 @@ margin-left: 15%;*/
 
 /* GRID VIEW */
 #container .grid li { 
-	padding: 50px;
-	margin-left: auto;
+	padding: 10px;
+	box-sizing:border-sizing;
+	
 }
 
 /*#container .grid li img{text-align:center;width:250px; margin: 7px;}

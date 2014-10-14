@@ -33,9 +33,9 @@
 		</span>		
 	</div>
 	<ul id="products" class="grid">
-		<li ng-repeat="item in data | filter:selectedCategoryFn() | range:selectedPage:pageSize" class="thumbnail col-sm-4">
+		<li ng-repeat="item in data | filter:selectedCategoryFn() | range:selectedPage:pageSize" class="thumbnail col-xs-4">
 
-			<img src="{{item.image || 'images/products/list-default-thumb.png'}}" 
+			<img src="{{item.image || 'images/products/grid-default-thumb.png'}}" 
 				height="250px" width="250px">
 
 			<section class="list-left">

@@ -40,11 +40,11 @@ angular.module("productList")
 				if (scope.gridactive != "active") {
 					// remove the grid view and change to list
 					theproducts.removeClass("grid").addClass("list");
-					lis.removeClass("thumbnail").removeClass("col-sm-4");
+					lis.removeClass("thumbnail").removeClass("col-xs-4");
 				} else {
 					// remove the list class and change to grid
 					theproducts.removeClass("list").addClass("grid");
-					lis.addClass("thumbnail").addClass("col-sm-4");
+					lis.addClass("thumbnail").addClass("col-xs-4");
 				}	
 			};
 			// scope.$watch(ctl.getSelectedCategory(), function (newValue, oldValue) {
