@@ -29,40 +29,67 @@
 
 <body ng-controller = "sportsStoreCtrl">
 	<div id="header">
-		<div class="menu fixed-top">
-		<a href="#" class="float-left go-home">Home</a>
-		<div class="float-right navbar navbar-inverse">
-			<cart-summary />
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href=""><i class="glyphicon glyphicon-home"></i></a>			
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#">Services</a></li>
+						<li><a href="#">Blog</a></li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">A</a></li>
+								<li><a href="#">B</a></li>
+								<li><a href="#">C</a></li>
+							</ul>
+						</li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Hi Mr Hung<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="">Menu1</a></li>
+								<li><a href="">Menu2</a></li>
+								<li><a href="">Menu3</a></li>
+							</ul>
+						</li>
+					</ul>		
+
+				</div>
+			</div>
+		</nav>
+	</div>		
+
+	<div class="container main-content" id="main">
+		<div>
+			<div class="alert alert-danger" ng-show="data.error">
+				Error ({{data.error.status}}). The product data was not loaded.
+				<a href="/app.html" class="alert-link">Click here to try again</a>
+			</div>
+			<ng-view />
 		</div>
-		<div id="nav">
-			<ul>
-				<li>
-					<a class="g" href="#">
-						Introduction
-					</a>
-				</li>
-				<li>
-					<a class="" href="#">
-						Feature
-					</a>
-				</li>
-				<li>
-					<a class="" href="#">
-						About
-					</a>
-				</li>
-			</ul>
-		</div>
-		</div>
+
+		<div class="push"></div>
+
+
+		<div class="footer" id="footer">
+			<div class="container">	
+				<p>copyright (c) @2008</p>	
+			</div>			
+		</div>		
+		
 	</div>
 
-	<div class="main-content">
-		<div class="alert alert-danger" ng-show="data.error">
-			Error ({{data.error.status}}). The product data was not loaded.
-			<a href="/app.html" class="alert-link">Click here to try again</a>
-		</div>
-		<ng-view />
-	</div>
 	
 	<!-- 
 	<ng-include src="'views/productList.html'"> </ng-include>
@@ -71,11 +98,5 @@
 	2) return $filter("limitTo")(data.splice(start_index),size);//data.splice(start_index,size)
 	3) Inheritance issue: chapter 13- listing 11.js
 -->
-<footer style="display:none">
-	<ul>
-
-	</ul>
-	@copyright @2014
-</footer>
 </body>
 </html>

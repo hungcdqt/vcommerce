@@ -2,14 +2,44 @@
 body {
 	background-color: #f3f3f3;
 }
+
+#footer, .push {
+	clear: both;
+	height: 155px;
+}
+#footer {
+	background-color: black;
+	color: white;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+}
+.container {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+#main {
+	position: absolute;
+	top: 70px;
+	/*width: 100%;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -155px;*/ /* the bottom margin is the negative value of the footer's height */
+}
+
+nav .navbar-brand {
+
+}
 #container {
 	font-family: cursive,'Overlock' !important;
-	background-image: -ms-linear-gradient(bottom, #0FE0E0 0%, #EDEFED 100%);
+	/*background-image: -ms-linear-gradient(bottom, #0FE0E0 0%, #EDEFED 100%);
 	background-image: -moz-linear-gradient(bottom, #0FE0E0 0%, #EDEFED 100%);
 	background-image: -o-linear-gradient(bottom, #0FE0E0 0%, #EDEFED 100%);
 	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0FE0E0), color-stop(1, #EDEFED));
 	background-image: -webkit-linear-gradient(bottom, #0FE0E0 0%, #EDEFED 100%);
-	background-image: linear-gradient(to top, #0FE0E0 0%, #EDEFED 100%);
+	background-image: linear-gradient(to top, #0FE0E0 0%, #EDEFED 100%);*/
 }
 #container ul { list-style: none;padding:0px;}
 #container .buttons { margin-bottom: 20px; }
@@ -75,7 +105,6 @@ margin-left: 15%;*/
 #container .grid li { 
 	padding: 10px;
 	box-sizing:border-sizing;
-	
 }
 
 /*#container .grid li img{text-align:center;width:250px; margin: 7px;}
